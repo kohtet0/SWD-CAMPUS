@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    background-color: skyblue;
+    text-decoration: none;
+}
+
+#container {
+    margin: 0 auto;
+    width: 1080px;
+    border: 1px solid #e3e3e3;
+}
+
+/* width = 1080 - 42 = 1038px */
+#head {
+    width: 1038px;
+    height: 50px;
+    border: 1px solid #e3e3e3;
+    padding: 20px;
+    text-align: center;
+    color: rgb(242, 99, 11);
+}
+
+.primary, .secondary, .keyline {
+    width: 1080px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+/* width = 1080 - 42 = 1038px / 3 = 346 - 40 = 306px */
+.button, .link, .input {
+    width: 306px;
+    border: 1px solid #e3e3e3;
+    padding: 20px;
+}
+
+h4 {
+    color: red;
+    margin-bottom: 10px;
+}
+.btn, .btn-hover, .btn-active {
+    border-color: blue;
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 1s;
+    font-size: 15px;
+}
+
+.btn-hover:hover {
+    background-color: #ffffff;
+    color: black;
+    box-shadow: 0px 0px 20px blue, 0px 0px 20px white;
+}
+
+.btn-active:active {
+    background-color: black;
+    color: green;
+}
+
+.a, .a-hover, .a-active {
+    border-color: gray;
+    background-color: gray;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 1s;
+    font-size: 15px;
+}
+
+.a-hover:hover {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px gray, 0px 0px 20px white;
+    color: rgb(53, 45, 45);
+}
+
+.a-active:active {
+    background-color: rgba(128, 128, 128, 0.408);
+    box-shadow: 0px 0px 20px gray, 0px 0px 20px white;
+    color: rgba(255, 255, 255, 0.632);
+}
+
+.submit, .submit-hover, .submit-active {
+    border-color: rgb(255, 255, 0);
+    background-color: transparent;
+    color: yellow;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 1s;
+    font-size: 15px;
+}
+
+.submit-hover:hover {
+    box-shadow: 0px 0px 20px yellow, 0px 0px 20px rgb(219, 92, 92);
+    background-color: #ffffff;
+    color: black;
+}
+
+.submit-active:active {
+    box-shadow: 0px 0px 20px gray, 0px 0px 20px white;
+    background-color: #9696cd;
+    color: rgb(255, 255, 255);
+}

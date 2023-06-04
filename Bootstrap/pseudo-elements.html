@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+    <!-- <style>
+      body {
+        padding: 100px;
+      }
+      .one {
+        color: blue;
+        border: 5px solid black;
+        padding: 20px;
+        background-color: red;
+        text-align: right;
+        position: relative;
+      }
+      */.one::before {
+             content: "";
+        background-color: skyblue;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        z-index: -1;
+      }*/
+      .one::after {
+        content: "";
+        display: inline-block;
+        border: 15px solid black;
+        position: absolute;
+        bottom: -30px;
+        right: 30px;
+        border-top-color: red;
+        border-right-color: red;
+
+      }
+
+      */ .triangle {
+        display: inline-block;
+        border: 30px solid black;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: red;
+        border-left-width: 100px;
+        border-right-width: 0px;
+      } */
+    </style> -->
+    <style>
+      body{
+        padding: 20px;
+      } 
+      .img-label {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        position: absolute;
+        left: 20px;
+
+      }
+      .img-label::after {
+        content: "";
+        border: 10px solid black;
+        display: inline-block;
+        bottom: -100px;
+        left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1 class="one">I'm one</h1>
+    <div class="triangle"></div> -->
+    <div class="top-right"></div>
+    
+    <div class="card">
+      <p class="img-label">GG</p>
+      <img src="./img/download (2).jpeg" alt="" class="img">
+    </div>
+  </body>
+</html>

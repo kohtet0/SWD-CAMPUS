@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .box {
+            border: 2px solid black;
+            padding: 20px;
+        }
+
+        .thank {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .box {
+                background-color: skyblue;
+            }
+        }
+
+        @media screen and (min-width:700px){
+            .box {
+                background-color: gray;
+            }
+        }
+
+        @media print {
+            .box {
+                font-size: 30px;
+                font-family: 'Courier New', Courier, monospace;
+                text-align: justify;
+                word-spacing: 1px;
+            }
+
+            .thank {
+                display: block;
+                text-align: center;
+                font-size: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, placeat animi! Quidem laudantium impedit reprehenderit mollitia vel illo autem odit, ullam facilis iste inventore, exercitationem omnis vitae porro placeat obcaecati!
+        </p>
+    </div>
+
+    <p class="thank">Thank you!</p>
+
+</body>
+</html>
