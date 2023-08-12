@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box m-3">
+      <div class="">
+        <label for="input">Text</label>
+        <input type="text" id="input" />
+      </div>
+      <div class="">
+        <label for="fontSize">font size</label>
+        <input
+          type="range"
+          name=""
+          min="16"
+          max="50"
+          id="fontSize"
+          value="16"
+        />
+        <span id="fontSizeNumber">16</span>
+      </div>
+      <div class="">
+        <label for="color">color</label>
+        <input type="color" name="" id="color" />
+      </div>
+      <div class="">
+        <label for="font">select font</label>
+        <select name="" id="font"></select>
+      </div>
+    </div>
+
+    <hr />
+
+    <p id="text" class="m-3"></p>
+
+    <script>
+      const text = document.querySelector("#text");
+      const input = document.querySelector("#input");
+      const fontSize = document.querySelector("#fontSize");
+      const fontSizeNumber = document.querySelector("#fontSizeNumber");
+      const color = document.querySelector("#color");
+      const font = document.querySelector("#font");
+
+      const avaFonts = [
+        "monospace",
+        "sans-serif",
+        "ui-monospace",
+        "ui-rounded",
+      ];
+
+      input.addEventListener("keyup", () => {
+        text.innerText = input.value;
+      });
+
+      fontSize.addEventListener("change", () => {
+        text.style.fontSize = fontSize.value + "px";
+        fontSizeNumber.innerText = fontSize.value;
+      });
+
+      color.addEventListener("change", () => {
+        text.style.color = color.value;
+      });
+
+      avaFonts.forEach((el) => {
+        const option = document.createElement("option");
+        option.innerText = el;
+        option.value = el;
+
+        font.append(option);
+      });
+
+      font.addEventListener("change", () => {
+        text.style.fontFamily = font.value;
+      });
+    </script>
+  </body>
+</html>

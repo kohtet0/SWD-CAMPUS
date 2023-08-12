@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.min.css" />
+
+    <style>
+      * {
+        margin: 10px;
+      }
+
+      #resultElement {
+        width: 200px;
+        display: inline-block;
+      }
+
+      ul li {
+        list-style-type: circle;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Area Calculator</h1>
+    <div class="">
+      <span class=""> result : </span>
+      <span id="resultElement"></span>
+      <button id="clear">Clear</button>
+      <button id="save">save</button>
+    </div>
+
+    <br />
+
+    <input type="text" placeholder="input width" name="" id="width" />
+    <input type="text" placeholder="input breadth" name="" id="breadth" />
+    <button id="calc">Calculate</button>
+
+    <ul id="results"></ul>
+
+    
+
+    <script>
+      // select elements
+      const width = document.getElementById("width");
+      const breadth = document.getElementById("breadth");
+      const calc = document.getElementById("calc");
+      const resultElement = document.getElementById("resultElement");
+      const clear = document.getElementById("clear");
+      const save = document.getElementById("save");
+      const results = document.getElementById("results");
+
+      // calc
+      calc.onclick = () => {
+        const result = width.value * breadth.value + " sqft";
+        resultElement.innerText = ` ${width.value}ft * ${breadth.value}ft = ${result}`;
+        width.value = breadth.value = null;
+      };
+
+      clear.onclick = () => {
+        resultElement.innerText = null;
+      };
+
+      save.onclick = () => {
+        // results.innerHTML += `<li>${resultElement.innerText}</li>`;
+
+        const li = document.createElement("li");
+        li.classList.add("animate__animated", "animate__fadeInDown");
+        li.innerText = resultElement.innerText;
+
+        results.append(li);
+
+        resultElement.innerText = null;
+      };
+    </script>
+  </body>
+</html>

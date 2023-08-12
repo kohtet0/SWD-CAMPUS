@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // for heading
+      const h1 = document.createElement("h1");
+      h1.title = "this is heading";
+      h1.innerText = "Hello";
+      h1.offsetLeft = 100;
+
+      // for img
+      const img = new Image(200, 300);
+      img.src =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMvHFhNnMfyhZrz8vkkVA1XkaJojTp7OUw4QYA4enWgg&s";
+      img.border = "1px solid black";
+
+      document.body.append(h1);
+      document.body.append(img);
+    </script>
+  </body>
+</html>
