@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/app.css" />
+    <title>Document</title>
+  </head>
+  <body class="bg-dark-subtle">
+    <main id="app" class="p-3">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <!-- for heading -->
+            <h1 class="mb-3">List Builder</h1>
+
+            <!-- for user input data -->
+            <form action="#" id="formForList">
+              <div class="input-group mb-3" id="dataInput">
+                <input
+                  type="text"
+                  name=""
+                  id="textInput"
+                  class="form-control form-control-lg"
+                  required
+                />
+                <button id="addBtn" class="btn btn-lg btn-primary">
+                  <i class="bi bi-plus-lg pe-none"></i>
+                </button>
+              </div>
+            </form>
+
+            <!-- lists section -->
+            <div class="d-flex justify-content-between mb-3">
+              <h4 class="mb-0">Your Lists</h4>
+              <h4 class="badge bg-primary px-3 py-2 rounded-pill mb-0">
+                Done ( <span id="doneTotal">0</span> /
+                <span id="listTotal">0</span> )
+              </h4>
+            </div>
+
+            <!-- add list & empty-list -->
+            <div class="lists">
+              <div class="empty-list">
+                <div
+                  class="d-flex flex-column align-items-center mt-5 p-5 animate__animated animate__tada"
+                >
+                  <img
+                    height="300px"
+                    class="mb-3"
+                    src="./img/undraw_add_notes_re_ln36.svg"
+                    alt=""
+                  />
+                  <p>
+                    There is nothing.
+                    <b> Add list! </b>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- for footer all done -->
+            <button id="listAllDone" class="btn btn-primary w-100 d-block">All Done</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
