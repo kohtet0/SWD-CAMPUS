@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <title>Document</title>
+
+    <style>
+      .key {
+        transition: 200ms;
+      }
+
+      .key.active {
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="keys m-5 d-flex justify-content-between">
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key="a">
+        C4
+      </button>
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key="s">
+        D4
+      </button>
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key="d">
+        E4
+      </button>
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key="f">
+        F4
+      </button>
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key="j">
+        G4
+      </button>
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key="k">
+        A4
+      </button>
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key="l">
+        B4
+      </button>
+      <button class="key py-5 px-4 bg-primary-subtle rounded btn" key=";">
+        C5
+      </button>
+    </div>
+
+    <script>
+      //   const audio = new Audio("./to_the_bone.mp3");
+
+      //   console.dir(audio);
+
+      //   window.addEventListener("load", () => {
+      //     console.dir(audio.duration);
+      //   })
+
+      const buttons = document.querySelectorAll(".key");
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          button.classList.add("active");
+          setTimeout(() => {
+            button.classList.remove("active");
+          }, 200);
+          const currentUrl = `./${button.innerText}.mp3`;
+          const audio = new Audio(currentUrl);
+          audio.play();
+        });
+      });
+
+      document.addEventListener("keyup", (event) => {
+        const currentElement = [...buttons].find((button) => {
+          return button.getAttribute("key") === event.key;
+        });
+
+        currentElement && currentElement.click();
+      });
+    </script>
+  </body>
+</html>

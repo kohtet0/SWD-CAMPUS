@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="" id="fileInput" multiple />
+
+    <br />
+    <br />
+    <br />
+    <script>
+      //   const fetchUrl = "https://api.escuelajs.co/api/v1/products";
+
+      //   fetch(fetchUrl)
+      //     .then((res) => res.json())
+      //     .then((json) => console.log(json));
+
+      // document.querySelector("button").addEventListener("click", () => {
+      //     navigator.geolocation.getCurrentPosition((position), () => {
+      //         console.log(position.coords.latitude.)
+      //     })
+      // })
+
+      const fileInput = document.querySelector("#fileInput");
+
+      fileInput.addEventListener("change", () => {
+        const currentFile = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.readAsDataURL(currentFile);
+        reader.addEventListener("load", (event) => {
+          const img = new Image();
+          img.height = 200;
+          img.src = event.target.result;
+          document.body.append(img);
+        });
+
+        console.log(currentFile.name, "is uploaded.");
+      });
+    </script>
+  </body>
+</html>
