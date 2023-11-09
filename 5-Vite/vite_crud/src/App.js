@@ -1,17 +1,15 @@
 import { addContactFormHandler } from "./app/contact";
+import { listsDelHandler } from "./app/delContact";
+import { listsEditHandler } from "./app/edit";
 import { indexRead } from "./app/indexRead";
-import { createContactForm, removeBtn } from "./core/selector";
+import { createContactForm, lists } from "./core/selector";
 
 class App {
   listener() {
     createContactForm.addEventListener("submit", addContactFormHandler);
     indexRead();
-    removeBtn.forEach((removeBtn) => {
-      console.log(removeBtn)
-      removeBtn[0].addEventListener("click", (event) => {
-        console.log(event.target)
-      })
-    })
+    lists.addEventListener("click", listsDelHandler);
+    lists.addEventListener("click", listsEditHandler)
   }
   init() {
     console.log("App starting");
