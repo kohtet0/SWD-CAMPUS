@@ -20,5 +20,4 @@ export const post = async () => {
 
   const res = await fetch(`${baseUrl}/contacts`, requestOptions);
   const data = await res.json();
-  console.log(data);
 };

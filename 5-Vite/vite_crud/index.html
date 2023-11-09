@@ -7,11 +7,13 @@
   </head>
   <body class="bg-neutral-400">
     <div id="app " class="">
-      <div class="mt-5 w-96 mx-auto border p-5 rounded-2xl shadow-2xl ">
-        <h1 class="font-serif font-extrabold text-3xl text-neutral-50">Contacts App</h1>
+      <div class="mt-5 w-96 mx-auto border p-5 rounded-2xl shadow-2xl">
+        <h1 class="font-serif font-extrabold text-3xl text-neutral-50">
+          Contacts App
+        </h1>
         <form class="createContactForm mx-5 mt-6 gap-3 grid grid-cols-1">
           <input
-            class="h-10 border border-neutral-600 rounded-lg px-5"
+            class="h-10 rounded-lg px-5"
             type="text"
             name="name"
             id="name"
@@ -19,16 +21,15 @@
             required
           />
           <input
-            class="h-10 border border-neutral-600 rounded-lg px-5"
-            type="text"
+            class="h-10 rounded-lg px-5"
+            type="number"
             name="number"
             id="number"
             placeholder="Phone Number"
             required
           />
           <button
-            class="h-10 border border-neutral-600 rounded-lg bg-neutral-500 text-white font-bold flex justify-center items-center gap-1"
-            class="addBtn"
+            class="addBtn h-10 rounded-lg bg-neutral-500 text-white font-bold flex justify-center items-center gap-1"
             type="submit"
           >
             <svg
@@ -49,8 +50,12 @@
           </button>
         </form>
 
-        <div class="mt-5 text-center underline underline-offset-4 text-neutral-50 font-extrabold">
-          <a target="_blank" href="http://localhost:5173/api/contacts">See Contact List ?</a>
+        <div
+          class="mt-5 text-center underline underline-offset-4 text-neutral-50 font-extrabold"
+        >
+          <a target="_blank" href="http://localhost:5173/api/contacts"
+            >See Contact List ?</a
+          >
         </div>
         <div class="mt-5">
           <ul class="lists">
