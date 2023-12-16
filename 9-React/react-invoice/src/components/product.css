@@ -1,0 +1,8 @@
+body {
+  counter-reset: recordIncrement;
+}
+
+.td-counter::before {
+  counter-increment: recordIncrement;
+  content: counter(recordIncrement);
+}
