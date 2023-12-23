@@ -1,6 +1,7 @@
 import React from "react";
 
-const Form = () => {
+const Form = ({addTask}) => {
+
   return (
     <div className="my-5 flex justify-center items-center gap-2">
       <input
@@ -8,9 +9,10 @@ const Form = () => {
         type="text"
         name=""
         id="inputText"
+        onChange={addTask()}
       />
       <button
-        className="add-btn w-16 border h-10 flex justify-center items-center bg-neutral-600"
+        className="add-btn w-16 h-10 border border-neutral-500 flex justify-center items-center bg-neutral-600"
         type="button"
       >
         <svg

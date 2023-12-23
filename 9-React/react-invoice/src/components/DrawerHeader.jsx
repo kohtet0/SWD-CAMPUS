@@ -4,7 +4,7 @@ const DrawerHeader = () => {
   return (
     <div className="py-1 mb-10 border-b-2 border-neutral-600">
       <h5
-        id="drawer-right-label"
+        // id="drawer-right-label"
         className="inline-flex items-center text-2xl font-semibold text-gray-900 dark:text-gray-400 gap-x-1"
       >
         <svg

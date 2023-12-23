@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form = () => {
+const Form = ({ products }) => {
   return (
     <form action="" id="addRecordForm" className="print:hidden">
       <div className="grid grid-cols-5 gap-3">
@@ -12,6 +12,9 @@ const Form = () => {
           required
         >
           <option>Choose a fruit</option>
+          {products.map((product) => (
+            <option key={product.id}> {product.name}</option>
+          ))}
         </select>
 
         {/* number input */}

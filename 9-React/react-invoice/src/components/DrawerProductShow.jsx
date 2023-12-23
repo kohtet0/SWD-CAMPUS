@@ -1,7 +1,14 @@
 import React from "react";
+import ProductUiTemplate from "./ProductUiTemplate";
 
-const DrawerProductShow = () => {
-  return <div className="productShow"></div>;
+const DrawerProductShow = ({ products }) => {
+  return (
+    <div className="productShow">
+      {products.map((product) => (
+        <ProductUiTemplate key={product.id} product={product} />
+      ))}
+    </div>
+  );
 };
 
 export default DrawerProductShow;

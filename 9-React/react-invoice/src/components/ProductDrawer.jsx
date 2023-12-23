@@ -5,19 +5,17 @@ import DrawerProductShow from "./DrawerProductShow";
 import DrawerForm from "./DrawerForm";
 import ProductUiTemplate from "./ProductUiTemplate";
 
-const ProductDrawer = () => {
+const ProductDrawer = ({ addProduct, products, openDrawer, handleDrawer }) => {
   return (
     <div
-      id="drawer-right-example"
-      className="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800"
-      tabIndex="-1"
-      aria-labelledby="drawer-right-label"
+      className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${
+        !openDrawer && "translate-x-full"
+      } bg-white w-80 dark:bg-gray-800`}
     >
       <DrawerHeader />
-      <DrawerCloseBtn />
-      <DrawerProductShow />
-      <DrawerForm />
-      <ProductUiTemplate />
+      <DrawerCloseBtn handleDrawer={handleDrawer} />
+      <DrawerProductShow products={products} />
+      <DrawerForm addProduct={addProduct} />
     </div>
   );
 };

@@ -1,22 +1,20 @@
 import React from "react";
 
-const List = () => {
+const List = ({ id, job, isDone }) => {
+  const checkHandler = () => {};
   return (
     <div className="flex justify-between items-center border border-neutral-500 h-14 px-5 mb-3 group overflow-hidden">
       <div className="content flex justify-center items-center gap-2">
         <input
           className="check-list w-4 h-4"
           type="checkbox"
-          //   name={textValue}
-          //   id={dyId}
+          checked={isDone}
+          onChange={checkHandler}
         />
-        <label className="text-list" /* htmlFor={dyId} */>
-          {/* {textValue}  */}
-          hello
-        </label>
+        <label className={`text-list ${isDone && "line-through"}`}>{job}</label>
       </div>
       <div className="flex justify-center items-center gap-2 translate-x-[150%] group-hover:translate-x-0 duration-300 pointer-events-none group-hover:pointer-events-auto">
-        <button type="button" className="edit-btn">
+        <button type="button" className={`edit-btn ${isDone && "opacity-30"}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

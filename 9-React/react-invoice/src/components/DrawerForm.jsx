@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 
-const DrawerForm = () => {
+const DrawerForm = ({ addProduct }) => {
+  const productNameRef = useRef(null);
+  const productPriceRef = useRef(null);
+
+  const handleAddBtn = (event) => {
+    event.preventDefault();
+    addProduct({
+      id: Date.now(),
+      name: productNameRef.current.value,
+      price: productPriceRef.current.valueAsNumber,
+    });
+    productNameRef.current.value = "";
+    productPriceRef.current.value = "";
+  };
+
   return (
     <form action="#" className="newProductForm">
       <div className=" mt-auto grid grid-cols-12 gap-3">
         <input
+          ref={productNameRef}
           type="text"
           id="newProduct"
           name="newProduct"
@@ -14,6 +29,7 @@ const DrawerForm = () => {
         />
 
         <input
+          ref={productPriceRef}
           type="number"
           id="price"
           name="price"
@@ -23,6 +39,7 @@ const DrawerForm = () => {
         />
 
         <button
+          onClick={handleAddBtn}
           type="submit"
           className="col-span-5 w-full h-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700"
         >
