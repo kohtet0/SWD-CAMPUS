@@ -12,8 +12,10 @@ const Form = ({ products }) => {
           required
         >
           <option>Choose a fruit</option>
-          {products.map((product) => (
-            <option key={product.id}> {product.name}</option>
+          {products.map(({ id, name }) => (
+            <option value={name} product-id={id} key={id}>
+              {name}
+            </option>
           ))}
         </select>
 

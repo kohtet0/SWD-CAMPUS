@@ -33,16 +33,16 @@ const App = () => {
       price: 100,
     },
   ]);
-
-  const addProduct = (newProduct) => {
-    setProduct([...products, newProduct]);
-  };
-
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawer = () => {
     setOpenDrawer(!openDrawer);
   };
+
+  const addProduct = (newProduct) => {
+    setProduct([...products, newProduct]);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <div className="container mx-auto px-5 sm:px-10">
@@ -52,7 +52,7 @@ const App = () => {
       </div>
       <Footer handleDrawer={handleDrawer} />
       <ProductDrawer
-      addProduct={addProduct}
+        addProduct={addProduct}
         products={products}
         handleDrawer={handleDrawer}
         openDrawer={openDrawer}
