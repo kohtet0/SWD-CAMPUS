@@ -1,15 +1,22 @@
 import React from "react";
 import "./product.css";
 
-const Product = () => {
+const Product = ({
+  record: { id, name, price, quantity, cost },
+  removeRecord,
+}) => {
+  const handleRemoveBtn = () => {
+    removeRecord(id);
+  };
+
   return (
     <tr className="new group even:bg-white even:dark:bg-gray-900 odd:bg-gray-50 odd:dark:bg-gray-800 border-b dark:border-gray-700">
       <td className="px-3 sm:px-6 py-2 sm:py-3 text-center border-r border-neutral-200 td-counter"></td>
       <td className="px-3 sm:px-6 py-2 sm:py-3 text-center border-r border-neutral-200 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        Apple
+        {name}
       </td>
       <td className="currentPrice px-3 sm:px-6 py-2 sm:py-3 border-r border-neutral-200 text-end">
-        1200
+        {price}
       </td>
       <td className="px-3 sm:px-6 py-2 sm:py-3 border-r border-neutral-200">
         <div className="flex justify-end items-center gap-3">
@@ -30,7 +37,7 @@ const Product = () => {
               />
             </svg>
           </button>
-          <div className="currentQuantity">5</div>
+          <div className="currentQuantity">{quantity}</div>
           <button
             type="button"
             className="active:scale-75 duration-300 incrementBtn bg-neutral-600 rounded-lg opacity-0 group-hover:opacity-100"
@@ -51,7 +58,10 @@ const Product = () => {
         </div>
       </td>
       <td className="px-3 sm:px-6 py-2 sm:py-3 text-end flex justify-end items-center">
-        <button className="delBtn active:scale-75 duration-300 bg-neutral-600 rounded-lg p-1 absolute hidden pointer-events-none group-hover:pointer-events-auto group-hover:translate-x-9 group-hover:block">
+        <button
+          onClick={handleRemoveBtn}
+          className="delBtn active:scale-75 duration-300 bg-neutral-600 rounded-lg p-1 absolute hidden pointer-events-none group-hover:pointer-events-auto group-hover:translate-x-9 group-hover:block"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="white"
@@ -67,7 +77,7 @@ const Product = () => {
             />
           </svg>
         </button>
-        <div className="rowTotal">12125</div>
+        <div className="rowTotal">{cost}</div>
       </td>
     </tr>
   );

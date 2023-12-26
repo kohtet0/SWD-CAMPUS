@@ -6,6 +6,12 @@ import Footer from "./components/Footer";
 import ProductDrawer from "./components/ProductDrawer";
 
 const App = () => {
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const handleDrawer = () => {
+    setOpenDrawer(!openDrawer);
+  };
+
   const [products, setProduct] = useState([
     {
       id: 1,
@@ -33,22 +39,27 @@ const App = () => {
       price: 100,
     },
   ]);
-  const [openDrawer, setOpenDrawer] = useState(false);
-
-  const handleDrawer = () => {
-    setOpenDrawer(!openDrawer);
-  };
 
   const addProduct = (newProduct) => {
     setProduct([...products, newProduct]);
+  };
+
+  const [records, setRecord] = useState([]);
+
+  const addRecord = (newRecord) => {
+    setRecord([...records, newRecord]);
+  };
+
+  const removeRecord = (id) => {
+    setRecord(records.filter((record) => record.id != id));
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <div className="container mx-auto px-5 sm:px-10">
         <Nav />
-        <Form products={products} />
-        <Table />
+        <Form products={products} addRecord={addRecord} />
+        <Table records={records} removeRecord={removeRecord} />
       </div>
       <Footer handleDrawer={handleDrawer} />
       <ProductDrawer
