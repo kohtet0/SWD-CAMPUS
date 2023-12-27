@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductUiTemplate from "./ProductUiTemplate";
+import { GeneralContext } from "../contexts/GeneralContext";
 
-const DrawerProductShow = ({ products }) => {
+const DrawerProductShow = () => {
+  const { products } = useContext(GeneralContext);
+
   return (
     <div className="productShow">
       {products.map((product) => (

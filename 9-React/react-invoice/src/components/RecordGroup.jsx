@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Empty from "./Empty";
 import Product from "./Product";
+import { GeneralContext } from "../contexts/GeneralContext";
 
-const RecordGroup = ({ records, removeRecord }) => {
+const RecordGroup = () => {
+  const { records, removeRecord } = useContext(GeneralContext);
+
   return (
     <>
       {records.length === 0 && <Empty />}

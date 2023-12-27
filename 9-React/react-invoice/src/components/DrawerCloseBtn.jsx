@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GeneralContext } from "../contexts/GeneralContext";
 
 const DrawerCloseBtn = ({ handleDrawer }) => {
+  const { toggleDrawer } = useContext(GeneralContext);
+
   return (
     <button
       type="button"
-      onClick={handleDrawer}
+      onClick={toggleDrawer}
       className="text-gray-900 border border-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
     >
       <svg

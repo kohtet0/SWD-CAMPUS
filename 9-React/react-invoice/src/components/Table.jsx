@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import RecordGroup from "./RecordGroup";
+import { GeneralContext } from "../contexts/GeneralContext";
 
-const Table = ({ records, removeRecord }) => {
+const Table = () => {
+  const { records } = useContext(GeneralContext);
+
   const allTotal = records.reduce((pv, cv) => pv + cv.cost, 0);
 
   return (
@@ -27,7 +30,7 @@ const Table = ({ records, removeRecord }) => {
           </tr>
         </thead>
         <tbody id="tableBody">
-          <RecordGroup records={records} removeRecord={removeRecord} />
+          <RecordGroup />
         </tbody>
         <tfoot>
           <tr className="even:bg-white even:dark:bg-gray-900 odd:bg-gray-50 odd:dark:bg-gray-800 border-b dark:border-gray-700">

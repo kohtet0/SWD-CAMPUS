@@ -1,6 +1,9 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { GeneralContext } from "../contexts/GeneralContext";
 
-const Form = ({ products, addRecord }) => {
+const Form = () => {
+  const { products, addRecord } = useContext(GeneralContext);
+
   const addRecordFormRef = useRef();
   const idRef = useRef();
   const quantityRef = useRef();
@@ -19,7 +22,7 @@ const Form = ({ products, addRecord }) => {
       id: Date.now(),
       productId: idRef.current.value,
       name: currentProduct.name,
-      price: currentProduct.price.toFixed(2),
+      price: currentProduct.price,
       quantity: quantityRef.current.valueAsNumber,
       cost: parseInt(cost.toFixed(2)),
     };
