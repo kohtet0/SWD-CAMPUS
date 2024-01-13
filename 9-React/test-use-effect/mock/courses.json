@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "WAD",
+    "fee": 500000,
+    "status": true,
+    "student_count": 15
+  },
+
+  {
+    "id": 2,
+    "title": "SWD",
+    "fee": 300000,
+    "status": true,
+    "student_count": 50
+  }
+]

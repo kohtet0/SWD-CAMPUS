@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  counter-reset: reset;
+}
+
+.counter-no::before {
+  counter-increment: reset;
+  content: counter(reset);
+}
