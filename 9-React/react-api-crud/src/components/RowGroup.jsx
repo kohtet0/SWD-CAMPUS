@@ -5,7 +5,7 @@ import Row from "./Row";
 import { dataContext } from "../contexts/DataContext";
 
 const RowGroup = () => {
-  const { courses, setCourse } = useContext(dataContext);
+  const { courses, setCourse } = useContext(dataContext); // data received from context api
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -33,4 +33,3 @@ const RowGroup = () => {
 };
 
 export default RowGroup;
- 

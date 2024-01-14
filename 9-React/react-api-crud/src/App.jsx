@@ -8,7 +8,7 @@ import EditFormDrawer from "./components/EditFormDrawer";
 const App = () => {
   return (
     <>
-      <Header />
+      <Header /> 
       <CreateGroup />
       <CourseTable />
       <CreateFormDrawer />

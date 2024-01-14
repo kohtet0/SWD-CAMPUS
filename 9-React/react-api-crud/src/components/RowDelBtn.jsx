@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { dataContext } from "../contexts/DataContext";
 
 const RowDelBtn = ({ id }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { removeCourse } = useContext(dataContext);
+  const [isLoading, setIsLoading] = useState(false); // for loading when del btn click
+  const { removeCourse, courses } = useContext(dataContext); // data received from context api
 
   const handleDelBtn = async () => {
     setIsLoading(true);

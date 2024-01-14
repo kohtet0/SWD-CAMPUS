@@ -1,14 +1,49 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { dataContext } from "../contexts/DataContext";
 
 const CreateFormDrawer = () => {
-  const { openCreateDrawer, toggleCreateDrawer, addCourse, createRef } = useContext(dataContext);
-  console.dir(createRef.current);
-  const createForm = new FormData(createRef.current)
-  console.log(createForm.get("course_title"));
+  const { openCreateDrawer, toggleCreateDrawer, addCourse } =
+    useContext(dataContext); // data received from context api
+
+  const createFormRef = useRef(); // for create form dom ref
+  const [isLoading, setIsLoading] = useState(false); // when form submit for loading | disable
+
+  // submit form handle
+  const handleCreateForm = async (event) => {
+    event.preventDefault(); // when submit link to another page stop
+    const dataCreateForm = new FormData(createFormRef.current); // dom form data web api
+    setIsLoading(true);
+
+    // this is new create data
+    const newCourse = {
+      title: dataCreateForm.get("course_title"),
+      short_name: dataCreateForm.get("short_name"),
+      fee: dataCreateForm.get("course_fee"),
+      id: Date.now(),
+    };
+
+    // for create form drawer close
+    if (dataCreateForm.get("close_drawer") === "on") {
+      toggleCreateDrawer();
+    }
+
+    // this is data submit to server start!
+    const res = await fetch("http://localhost:5173/api/courses", {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(newCourse),
+    });
+    const json = await res.json();
+    // this is end!
+
+    addCourse(json); // for ui render
+    createFormRef.current.reset(); // when data submitted form input clear
+    setIsLoading(false);
+  };
+
   return (
     <div
-      className={`fixed shadow border-l-2 top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform bg-white w-80 dark:bg-gray-800 ${
+      className={`fixed shadow border-l-2 top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform bg-white w-80 dark:bg-gray-800 select-none ${
         openCreateDrawer ? "translate-x-0" : "translate-x-full"
       }`}
     >
@@ -50,17 +85,19 @@ const CreateFormDrawer = () => {
         <span className="sr-only">Close menu</span>
       </button>
       {/* create form */}
-      <form ref={createRef}>
+      <form onSubmit={handleCreateForm} ref={createFormRef}>
         <div className="mb-5">
           <label
-            htmlFor="course_title"
+            htmlFor="courseTitle"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Course Title
           </label>
           <input
             type="text"
+            id="courseTitle"
             name="course_title"
+            disabled={isLoading}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="eg. Special Web Design"
             required
@@ -68,13 +105,16 @@ const CreateFormDrawer = () => {
         </div>
         <div className="mb-5">
           <label
-            htmlFor="short_name"
+            htmlFor="shortName"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Short Title
           </label>
           <input
             type="text"
+            id="shortName"
+            name="short_name"
+            disabled={isLoading}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="eg. SWD"
             required
@@ -82,13 +122,16 @@ const CreateFormDrawer = () => {
         </div>
         <div className="mb-5">
           <label
-            htmlFor="course_fee"
+            htmlFor="courseFee"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Course Fee
           </label>
           <input
             type="number"
+            id="courseFee"
+            name="course_fee"
+            disabled={isLoading}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="eg. Special Web Design"
             required
@@ -97,12 +140,14 @@ const CreateFormDrawer = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <input
-              id="default-checkbox"
+              id="closeInput"
               type="checkbox"
+              name="close_drawer"
+              disabled={isLoading}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
-              htmlFor="default-checkbox"
+              htmlFor="closeInput"
               className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Close after saved
@@ -110,6 +155,7 @@ const CreateFormDrawer = () => {
           </div>
           <button
             type="submit"
+            disabled={isLoading}
             className="group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 disabled:opacity-70"
           >
             <span className="inline group-disabled:hidden">Create</span>
