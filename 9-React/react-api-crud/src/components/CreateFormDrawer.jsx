@@ -22,11 +22,6 @@ const CreateFormDrawer = () => {
       id: Date.now(),
     };
 
-    // for create form drawer close
-    if (dataCreateForm.get("close_drawer") === "on") {
-      toggleCreateDrawer();
-    }
-
     // this is data submit to server start!
     const res = await fetch("http://localhost:5173/api/courses", {
       method: "POST",
@@ -38,6 +33,10 @@ const CreateFormDrawer = () => {
 
     addCourse(json); // for ui render
     createFormRef.current.reset(); // when data submitted form input clear
+    // for create form drawer close
+    if (dataCreateForm.get("close_drawer") === "on") {
+      toggleCreateDrawer();
+    }
     setIsLoading(false);
   };
 
