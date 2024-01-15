@@ -1,8 +1,55 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { dataContext } from "../contexts/DataContext";
 
 const EditFormDrawer = () => {
-  const { openEditDrawer, toggleEditDrawer } = useContext(dataContext);
+  const {
+    openEditDrawer,
+    toggleEditDrawer,
+    currentCourse: { title, short_name, fee, id },
+    editCourse,
+  } = useContext(dataContext);
+
+  const [editLoad, setEditLoad] = useState(false);
+
+  const handleEditForm = async (event) => {
+    event.preventDefault();
+
+    const newEditCourse = {
+      title: titleRef.current.value,
+      short_name: shortNameRef.current.value,
+      fee: feeRef.current.value,
+    };
+
+    setEditLoad(true);
+
+    const res = await fetch(`http://localhost:5173/api/courses/${id}`, {
+      method: "PUT",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(newEditCourse),
+    });
+
+    const json = await res.json();
+    setEditLoad(false);
+    if (closeRef.current.checked === true) {
+      toggleEditDrawer();
+    }
+    editCourse(json);
+  };
+
+  const titleRef = useRef();
+  const shortNameRef = useRef();
+  const feeRef = useRef();
+  const idRef = useRef();
+  const closeRef = useRef();
+
+  useEffect(() => {
+    console.log("hello");
+    titleRef.current.value = title;
+    shortNameRef.current.value = short_name;
+    feeRef.current.value = fee;
+    idRef.current.value = id;
+  }, []);
+
   return (
     <div
       id="edit-drawer"
@@ -53,8 +100,13 @@ const EditFormDrawer = () => {
         <span className="sr-only">Close menu</span>
       </button>
       {/* edit form */}
-      <form id="courseEditForm">
-        <input type="hidden" name="edit_course_id" id="edit_course_id" />
+      <form onSubmit={handleEditForm}>
+        <input
+          ref={idRef}
+          type="hidden"
+          name="edit_course_id"
+          id="edit_course_id"
+        />
         <div className="mb-5">
           <label
             htmlFor="edit_course_title"
@@ -63,6 +115,7 @@ const EditFormDrawer = () => {
             Course Title
           </label>
           <input
+            ref={titleRef}
             type="text"
             id="edit_course_title"
             name="edit_course_title"
@@ -79,6 +132,7 @@ const EditFormDrawer = () => {
             Short Title
           </label>
           <input
+            ref={shortNameRef}
             type="text"
             id="edit_short_name"
             name="edit_short_name"
@@ -95,6 +149,7 @@ const EditFormDrawer = () => {
             Course Fee
           </label>
           <input
+            ref={feeRef}
             type="number"
             id="edit_course_fee"
             name="edit_course_fee"
@@ -106,6 +161,7 @@ const EditFormDrawer = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <input
+              ref={closeRef}
               id="edit-default-checkbox"
               type="checkbox"
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -118,11 +174,12 @@ const EditFormDrawer = () => {
             </label>
           </div>
           <button
+            disabled={editLoad}
             type="submit"
             className="group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 disabled:opacity-70"
           >
             <span className="inline group-disabled:hidden">Update</span>
-            <span className="hidden group-disabled:flex items-center gap-2">
+            <span className="hidden group-disabled:flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

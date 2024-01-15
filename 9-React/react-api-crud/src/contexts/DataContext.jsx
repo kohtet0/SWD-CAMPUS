@@ -9,9 +9,7 @@ const DataContextProvider = ({ children }) => {
 
   const [courses, setCourse] = useState(null); // for course data render state
 
-  const [currentCourse, setCurrentCourse] = useState();
-
-  const editFormRef = useRef();
+  const [currentCourse, setCurrentCourse] = useState(); // for edit course state
 
   // for create drawer close | open fun
   const toggleCreateDrawer = () => {
@@ -34,11 +32,13 @@ const DataContextProvider = ({ children }) => {
   };
 
   // for edit course fun
-  const editCourse = (id) => {
-    const dataEditForm = new FormData(editFormRef.current);
-
-    dataEditForm.append("edit_course_title", currentCourse.title);
-    console.log(currentCourse.title);
+  const editCourse = (newEditCourse) => {
+    setCourse(courses.map((course) => {
+      if (course.id === newEditCourse.id) {
+        return newEditCourse
+      }
+      return course
+    }))
   };
 
   return (
@@ -55,7 +55,7 @@ const DataContextProvider = ({ children }) => {
         editCourse,
         currentCourse,
         setCurrentCourse,
-        editFormRef,
+
       }}
     >
       {children} {/* this is children props */}

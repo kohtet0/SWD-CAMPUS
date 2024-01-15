@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { dataContext } from "../contexts/DataContext";
 
 const RowEditBtn = ({ id }) => {
-  const { toggleEditDrawer, currentCourse, setCurrentCourse } =
-    useContext(dataContext);
+  const { toggleEditDrawer, setCurrentCourse } = useContext(dataContext);
   const [editLoad, setEditLoad] = useState(false);
 
   const handleEditForm = async () => {
@@ -12,7 +11,6 @@ const RowEditBtn = ({ id }) => {
       method: "GET",
     });
     const json = await res.json();
-    console.log(json);
     setCurrentCourse(json);
     toggleEditDrawer();
     setEditLoad(false);
