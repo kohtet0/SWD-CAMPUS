@@ -13,7 +13,7 @@ const Row = ({ course: { id, title, short_name, fee } }) => {
       <td className="px-6 py-4 cell-editable row-short">{short_name}</td>
       <td className="px-6 py-4 cell-editable row-fee text-end">{fee}</td>
       <td className="px-6 py-4 text-right flex gap-1 justify-end">
-        <RowEditBtn />
+        <RowEditBtn id={id} />
         <RowDelBtn id={id} />
       </td>
     </tr>

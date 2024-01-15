@@ -7,7 +7,11 @@ const DataContextProvider = ({ children }) => {
 
   const [openEditDrawer, setOpenEditDrawer] = useState(false); // for open edit drawer false:close & true:open
 
-  const [courses, setCourse] = useState([]); // for course data render state
+  const [courses, setCourse] = useState(null); // for course data render state
+
+  const [currentCourse, setCurrentCourse] = useState();
+
+  const editFormRef = useRef();
 
   // for create drawer close | open fun
   const toggleCreateDrawer = () => {
@@ -29,6 +33,14 @@ const DataContextProvider = ({ children }) => {
     setCourse(courses.filter((course) => course.id != id)); // course => filter => course.id != id (id မတူရင် ပြန်မပါတော့ပါ )
   };
 
+  // for edit course fun
+  const editCourse = (id) => {
+    const dataEditForm = new FormData(editFormRef.current);
+
+    dataEditForm.append("edit_course_title", currentCourse.title);
+    console.log(currentCourse.title);
+  };
+
   return (
     <dataContext.Provider
       value={{
@@ -40,6 +52,10 @@ const DataContextProvider = ({ children }) => {
         setCourse,
         addCourse,
         removeCourse,
+        editCourse,
+        currentCourse,
+        setCurrentCourse,
+        editFormRef,
       }}
     >
       {children} {/* this is children props */}

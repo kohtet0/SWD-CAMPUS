@@ -23,11 +23,9 @@ const RowGroup = () => {
   return (
     <>
       {!ready && arr.map((arr, index) => <Loader key={index} />)}
-      {ready && courses.length ? (
-        courses.map((course) => <Row key={course.id} course={course} />)
-      ) : (
-        <Empty />
-      )}
+      {ready && courses.length
+        ? courses.map((course) => <Row key={course.id} course={course} />)
+        : ready && <Empty />}
     </>
   );
 };

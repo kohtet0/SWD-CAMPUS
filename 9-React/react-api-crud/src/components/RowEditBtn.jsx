@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { dataContext } from "../contexts/DataContext";
 
-const RowEditBtn = () => {
+const RowEditBtn = ({ id }) => {
+  const { toggleEditDrawer, currentCourse, setCurrentCourse } =
+    useContext(dataContext);
+  const [editLoad, setEditLoad] = useState(false);
+
+  const handleEditForm = async () => {
+    setEditLoad(true);
+    const res = await fetch(`http://localhost:5173/api/courses/${id}`, {
+      method: "GET",
+    });
+    const json = await res.json();
+    console.log(json);
+    setCurrentCourse(json);
+    toggleEditDrawer();
+    setEditLoad(false);
+  };
+
   return (
     <button
+      onClick={handleEditForm}
+      disabled={editLoad}
       type="button"
       className="row-edit group text-blue-500 border border-blue-500 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 disabled:opacity-50"
     >
