@@ -13,14 +13,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Container>
   </DataContextProvider>
 );
-
-// axios.get("http://localhost:5173/api/courses").then((res) => {
-//   console.log(res.data);
-//   console.log(res.status);
-// });
-
-const getCourse = async () => {
-  const res = await axios.get("http://localhost:5173/api/courses");
-  const json = await res.json();
-  console.log(json);
-};

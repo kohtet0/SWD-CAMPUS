@@ -43,7 +43,6 @@ const EditFormDrawer = () => {
   const closeRef = useRef();
 
   useEffect(() => {
-    console.log("hello");
     titleRef.current.value = title;
     shortNameRef.current.value = short_name;
     feeRef.current.value = fee;
