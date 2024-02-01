@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 const AboutPage = () => {
-  return (
-    <div>AboutPage</div>
-  )
-}
+  const { state, pathname, search } = useLocation();
 
-export default AboutPage
+  console.log(state, pathname, search);
+  return <div>AboutPage</div>;
+};
+
+export default AboutPage;

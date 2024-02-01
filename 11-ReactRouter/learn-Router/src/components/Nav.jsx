@@ -1,23 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
     <ul className="flex gap-5 text-3xl font-bold">
       <li>
-        <Link to={"/"}>Home</Link>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <Link to={"/about"}>About</Link>
+        <NavLink to={"/about"} state={{ name: "kohtet" }}>
+          About
+        </NavLink>
       </li>
       <li>
-        <Link to={"/service"} replace>Service</Link>
+        <NavLink to={"/service"}>Service</NavLink>
       </li>
       <li>
-        <Link to={"/book"}>Book</Link>
+        <NavLink to={"/book"}>Book</NavLink>
       </li>
       <li>
-        <Link to={`/book/${Math.random(1 * 10)}`}>Dynamic Book</Link>
+        <NavLink to={`/detail/${Math.random(1) * 10}`}>Dynamic Book</NavLink>
       </li>
     </ul>
   );
