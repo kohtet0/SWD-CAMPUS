@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import FormComponents from "@/components/Form.components";
-import { api } from "@/lib/api";
+import { api } from "@/service/api";
 
 const RegisterPage = () => {
   const [registerData, setRegisterData] = useState({
@@ -14,10 +14,11 @@ const RegisterPage = () => {
 
   const handleRegisterForm = async (event) => {
     event.preventDefault();
-    console.log(registerData);
-    const res = await api.post("register", JSON.stringify(registerData));
-    console.log(res);
-
+    try {
+      const res = await api.post("register", registerData);
+    } catch (e) {
+      throw new Error(e);
+    }
     event.target.reset();
   };
 

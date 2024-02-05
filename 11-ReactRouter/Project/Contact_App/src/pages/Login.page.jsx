@@ -2,16 +2,28 @@ import React, { useState } from "react";
 import FormComponents from "@/components/Form.components";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { api } from "@/service/api";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const nav = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  const handleLoginForm = (event) => {
+  const handleLoginForm = async (event) => {
     event.preventDefault();
-    console.log(loginData);
+    try {
+      const res = await api.post("login", loginData);
+      const token = await res.data.token
+      if (res.data.success) {
+        nav("/");
+      }
+    } catch (e) {
+      throw new Error(e.message);
+    }
+    event.target.reset();
   };
 
   const handleInput = (e) => {
@@ -30,12 +42,14 @@ const LoginPage = () => {
               <FormComponents
                 htmlFor={"email"}
                 label={"Email"}
+                type={"email"}
                 name={"email"}
                 onChange={handleInput}
               />
               <FormComponents
                 htmlFor={"password"}
                 label={"Password"}
+                type={"password"}
                 name={"password"}
                 onChange={handleInput}
               />
