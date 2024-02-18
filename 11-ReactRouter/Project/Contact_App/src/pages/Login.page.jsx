@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { api } from "@/service/api";
 import { useNavigate } from "react-router-dom";
+import { login } from "@/store/slice/auth.slice";
 
 const LoginPage = () => {
   const nav = useNavigate();
