@@ -8,14 +8,32 @@ const App = () => {
   return (
     <div>
       <h1>{state}</h1>
-      <button onClick={() => dispatch(increase(2))}>Add</button>
-      <br />
-      <button onClick={() => dispatch(decrease(2))}>Remove</button>
+      <button onClick={() => dispatch(increase(10))}>Add</button>
+      <button onClick={() => dispatch(decrease(20))}>Remove</button>
     </div>
   );
 };
 
 export default App;
+
+// import React from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import { decrease, increase } from "./store/action/counterAction";
+
+// const App = () => {
+//   const state = useSelector((state) => state.counter);
+//   const dispatch = useDispatch();
+//   return (
+//     <div>
+//       <h1>{state}</h1>
+//       <button onClick={() => dispatch(increase(2))}>Add</button>
+//       <br />
+//       <button onClick={() => dispatch(decrease(2))}>Remove</button>
+//     </div>
+//   );
+// };
+
+// export default App;
 
 // import React, { useReducer } from "react";
 

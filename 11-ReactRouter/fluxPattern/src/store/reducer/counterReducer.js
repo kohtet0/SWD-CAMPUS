@@ -1,6 +1,6 @@
 const initialState = 0;
 
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "increase":
       if (action.payload) {
@@ -11,16 +11,19 @@ const reducer = (state = initialState, action) => {
       break;
 
     case "decrease":
-      if (state > 0) {
-        if (action.payload) {
+      if (action.payload) {
+        if (state > 0 && state >= action.payload) {
           return (state -= action.payload);
         } else {
-          return (state -= 1);
+          return state;
         }
       } else {
-        return state;
+        if (state > 0) {
+          return (state -= 1);
+        } else {
+          return state;
+        }
       }
-      break;
 
     default:
       return state;
@@ -28,4 +31,34 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+// const initialState = 0;
+
+// const reducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case "increase":
+//       if (action.payload) {
+//         return (state += action.payload);
+//       } else {
+//         return (state += 1);
+//       }
+//       break;
+
+//     case "decrease":
+//       if (state > 0) {
+//         if (action.payload) {
+//           return (state -= action.payload);
+//         } else {
+//           return (state -= 1);
+//         }
+//       } else {
+//         return state;
+//       }
+//       break;
+
+//     default:
+//       return state;
+//       break;
+//   }
+// };
+
+// export default reducer;
