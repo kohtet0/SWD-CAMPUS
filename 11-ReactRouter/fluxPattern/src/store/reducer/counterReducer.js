@@ -12,7 +12,11 @@ const reducer = (state = initialState, action) => {
 
     case "decrease":
       if (state > 0) {
-        return (state -= 1);
+        if (action.payload) {
+          return (state -= action.payload);
+        } else {
+          return (state -= 1);
+        }
       } else {
         return state;
       }

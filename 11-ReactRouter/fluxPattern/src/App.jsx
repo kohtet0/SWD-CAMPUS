@@ -10,7 +10,7 @@ const App = () => {
       <h1>{state}</h1>
       <button onClick={() => dispatch(increase(2))}>Add</button>
       <br />
-      <button onClick={() => dispatch(decrease())}>Remove</button>
+      <button onClick={() => dispatch(decrease(2))}>Remove</button>
     </div>
   );
 };
